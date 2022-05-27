@@ -34,9 +34,10 @@ Atruth = matrix(rnorm(100*3),nrow=100,ncol=3)
 Residual = matrix(rnorm(100*dim(Struth)[2]),nrow=100)
 Yraw = Atruth%*%Struth + Residual
 
-##### Run Locus on the data ##### 
+## Run Locus on the data 
 Locus_result = LOCUS(Yraw,3,V)
 
+## Visualize the result
 par(mfrow=c(2,3))
 for(i in 1:dim(Struth)[1]){image(Ltrinv(Struth[i,],V,FALSE))}
 for(i in 1:dim(Locus_result$S)[1]){image(Ltrinv(Locus_result$S[i,],V,FALSE))}
