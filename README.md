@@ -2,7 +2,7 @@
 
 > Low-rank decomposition of brain connectivity matrices with universal sparsity
 
-**Author:** [Yikai Wang](https://sites.google.com/view/yikaiw/), [Jialu Ran], [Ying Guo]
+**Author:** [Yikai Wang](https://sites.google.com/view/yikaiw/), Jialu Ran, Ying Guo
 
 -----
 
