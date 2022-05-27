@@ -16,6 +16,6 @@ calculate_bic(Y, A, S)
 }
 
 \details{
-  In Wang, Y. and Guo, Y. (2020+), the BIC-type criterion is proposed to select parameters \eqn{\phi, \rho}. The criterion balances between model fitting and model sparsity. 
+  In Wang, Y. and Guo, Y. (2022+), the BIC-type criterion is proposed to select parameters \eqn{\phi, \rho}. The criterion balances between model fitting and model sparsity. 
 }
 \value{A BIC value will be returned.}
