@@ -22,7 +22,7 @@ with universal sparsity to reveal sub brain networks.
 Below is an illustration of the the main function on simulated data.
 
 ``` r
-## Simulated the data to use. 
+## Simulated the data to use
 V = 50
 S1 = S2 = S3 = matrix(0,ncol = V,nrow = V)
 S1[5:20,5:20] = 4;S1[23:37,23:37] = 3;S1[40:48,40:48] = 3
