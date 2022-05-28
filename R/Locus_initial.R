@@ -36,16 +36,30 @@ Locus_initial <- function(Y,q,V,rho=0.95,R = NULL,maxIter = 100)
     S_ini[i,] = Ltrans( t(theta_ini[[i]]$X_l)%*%diag(theta_ini[[i]]$lam_l)%*%theta_ini[[i]]$X_l,F)
   }
   
+  # compute initial value of A
   A_ini = Y%*%t(S_ini)%*%solve(S_ini%*%t(S_ini))
-  M_ini =  solve(t(A_ini)%*%A_ini)%*%t(A_ini) # Generalized inverse of A
-  # Scale Up
-  for(l in 1:q)
-  {
-    scaleL = sqrt(sum(A_ini[,l]^2))
+  
+  # scale up
+  for(l in 1:q){
+    # unit norm each column of A
+    # scaleL = sqrt(sum(A_ini[,l]^2))
+    scaleL = sd(A_ini[,l])
     A_ini[,l] = A_ini[,l] / scaleL
+    S_ini[l,] = S_ini[l,] * scaleL
+    # scale X_l correspondingly
     theta_ini[[l]]$X_l = theta_ini[[l]]$X_l * sqrt(scaleL)
+  }
+  
+  # since after preprocessing, A_tilde is orthogonal
+  # compute A_tilde transpose/inverse (g-inverse of A-tilde)
+  # if X has full column rank, (X'X)^(-1)X' is its g-inverse
+  # why use g-inverse here: since A_ini is N*q
+  # afterwards, in the update process, we actually can just use A_tilde transpose(after scale), or g-inverse
+  M_ini =  solve(t(A_ini)%*%A_ini)%*%t(A_ini) # g-inverse of A
+  for(l in 1:q){
     theta_ini[[l]]$M_l = M_ini[l,]
   }
+  
   return(list(A=A_ini,theta = theta_ini,S = S_ini))
 }
 

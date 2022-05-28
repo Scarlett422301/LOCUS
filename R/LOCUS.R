@@ -49,7 +49,15 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
     {
       theta_new = Locus_update(Y,A,theta,penalt= penalty,lambda_ch = phi, gamma = 2.1,silent = silent)
     }
-    A_new = theta_new$A; S_new = theta_new$S; theta_new  = theta_new$theta; 
+    
+    # orthogonize A here
+    if(preprocess){
+      A_new = orthonormalization(theta_new$A)
+    }else{
+      A_new = theta_new$A
+    }
+    
+    S_new = theta_new$S; theta_new  = theta_new$theta
     
     errS = norm(as.matrix(S_new-S))/norm(as.matrix(S))
     errA = norm(as.matrix(A_new-A))/norm(as.matrix(A))
@@ -67,13 +75,23 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
     if(errA < espli1 & errS < espli2)
     {
       if(!silent){print("Converaged!")}
-      if(preprocess){ A = Yraw %*% t(S) %*% solve(S%*%t(S)) }
+      if(preprocess){ 
+        A = Yraw %*% t(S) %*% solve(S%*%t(S)) 
+      }else{
+        # demeaned Y or unpreprocessed+undemeaned Y
+        A = Y %*% t(S) %*% solve(S%*%t(S)) 
+      }
       return(list(Conver = T,A=A,S=S,theta=theta))
     }
     Iter = Iter + 1
   }
   
   if(!silent){print("Failed to converge!")}
-  if(preprocess){ A = Yraw %*% t(S) %*% solve(S%*%t(S)) }
+  if(preprocess){ 
+    A = Yraw %*% t(S) %*% solve(S%*%t(S)) 
+  }else{
+    # demeaned Y or unpreprocessed+undemeaned Y
+    A = Y %*% t(S) %*% solve(S%*%t(S)) 
+  }
   return(list(Conver=F, A=A, S=S, theta=theta))
 }
