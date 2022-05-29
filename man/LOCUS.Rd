@@ -7,7 +7,8 @@ LOCUS: Low-rank decomposition of brain connectivity matrices with universal spar
 This function is to conduct the LOCUS approach for decomposing brain connectivity data into subnetworks. 
 }
 \usage{
-LOCUS(Y, q, V, MaxIteration=100, penalty="SCAD", phi=0.9, approximation=T, preprocess=T, espli1=0.001, espli2=0.001, rho=0.95, silent=F, demean=T)
+LOCUS(Y, q, V, MaxIteration=100, penalty="SCAD", phi=0.9, approximation=T, preprocess=T, 
+espli1=0.001, espli2=0.001, rho=0.95, silent=F, demean=T)
 }
 
 \arguments{
@@ -28,8 +29,8 @@ LOCUS(Y, q, V, MaxIteration=100, penalty="SCAD", phi=0.9, approximation=T, prepr
 
 \details{
   This is the main function for LOCUS decomposition of brain connectivity matrices, which is to minimize the following objective function:
-    \deqn{\sum_{i=1}^N\|Y_i - \sum_{l=1}^q a_{il} S_l\|_2^2 + \phi \sum_{l=1}^q\|S_l\|_*,}
-  where \eqn{Y_i} is the transpose of \eqn{i}th row in \eqn{Y}, \eqn{S_l = L(X_l D_l X_l')} represents the \eqn{l}th vectorized latent source/subnetwork with low-rank decomposition, \eqn{L} is \code{Ltrans} function, \eqn{\|\cdot\|_*} represents the penalty which can either be L1, SCAD or hard-thresholded. Further details can be found in the LOCUS paper.  
+    \deqn{\sum_{i=1}^N\|y_i - \sum_{l=1}^q a_{il} s_l\|_2^2 + \phi \sum_{l=1}^q\|s_l\|_*,}
+  where \eqn{y_i} is the transpose of \eqn{i}th row in \eqn{Y}, \eqn{s_l = L(X_l D_l X_l')} represents the \eqn{l}th vectorized latent source/subnetwork with low-rank decomposition, \eqn{L} is \code{Ltrans} function, \eqn{\|\cdot\|_*} represents the penalty which can either be L1, SCAD or hard-thresholded. Further details can be found in the LOCUS paper.  
 }
 \value{
   An R list from Locus containing the following terms:
@@ -38,15 +39,9 @@ LOCUS(Y, q, V, MaxIteration=100, penalty="SCAD", phi=0.9, approximation=T, prepr
    \item{S}{Subnetworks of dimension q by p, where each row represents a vectorized subnetwork based on \code{Ltrans} function.}
    \item{theta}{A list of length q, where \code{theta[[i]]} contains the symmetric low-rank decomposition of \code{i}th subnetwork. }
    }
-
-
 \references{
-Wang, Y. and Guo, Y. (2020+).   \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with universal sparsity. } In preparation. 
+Wang, Y. and Guo, Y. (2022+).   \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with universal sparsity. } In preparation. 
 }
-
-\author{Yikai Wang\cr
-  Maintainer: Yikai Wang \email{johnzon.wyk@gmail.com} }
-  
 \examples{
 ## Simulated the data to use. 
 V = 50

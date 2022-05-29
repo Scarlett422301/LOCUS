@@ -30,7 +30,7 @@ preprocess = T, demean = T)
 \details{
   In Wang, Y. and Guo, Y. (2022+), the tuning parameters for learning the LOCUS model include \eqn{\phi, \rho}. The BIC-type criterion is proposed to select those parameters. 
   
-\deqn{BIC =  -2 \sum_{i=1}^N log g(y_i; \sum_{l=1}^{q} \hat{a}_{il} \hat{s}_l, \hat{\sigma}^2 I_p)) + log(N) \sum_{l=1}^{q}\|\hat{s}_l\|_0}
+\deqn{BIC =  -2 \sum_{i=1}^N log \{g(y_i; \sum_{l=1}^{q} \hat{a}_{il} \hat{s}_l, \hat{\sigma}^2 I_p)\} + log(N) \sum_{l=1}^{q}\|\hat{s}_l\|_0}
 
 where \eqn{g} denotes the pdf of a multivariate Gaussian distribution, \eqn{\hat{\sigma}^2 = \frac{1}{Np}\sum_i \|y_i-\sum_{l=1}^{q}\hat{a}_{il}\hat{s}_{l}\|_2^2}, \eqn{\|\cdot\|_0} denotes the \eqn{L_0} norm . This criterion balances between model fitting and model sparsity. 
 }

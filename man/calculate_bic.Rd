@@ -3,7 +3,7 @@
 \title{
 BIC calculation}
 \description{
-This function is to calculate BIC score for LOCUS output following the BIC formula defined in Wang, Y. and Guo, Y. (2020+). 
+This function is to calculate BIC score for LOCUS output following the BIC formula defined in Wang, Y. and Guo, Y. (2022+). 
 }
 \usage{
 calculate_bic(Y, A, S)
