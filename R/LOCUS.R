@@ -52,7 +52,7 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
     
     # orthogonize A here
     if(preprocess){
-      A_new = orthonormalization(theta_new$A)
+      A_new = far::orthonormalization(theta_new$A)
     }else{
       A_new = theta_new$A
     }
