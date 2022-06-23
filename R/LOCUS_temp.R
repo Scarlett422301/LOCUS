@@ -1,21 +1,23 @@
-LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
+LOCUS_temp <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
                   approximation=T, preprocess=T, 
-                  espli1=0.001, espli2=0.001, rho=0.95, silent=F)
+                  espli1=0.001, espli2=0.001, rho=0.95, silent=F, demean=T)
   # Y: connectivity data of dimension N x K, N is number of subjects, K is number of edges. 
   # q: Number of subnetworks to extract.
   # V: Number of nodes in network.
   # MaxIteration = 100: number of maximum iterations.
   # espli1=0.001, espli2=0.001: toleration for convergence on S and A. 
-  # penalty = "SCAD": sparsity penalty, this can be NULL, SCAD, or L1.
-  # phi = 0.9: tuning parameter for penalty
+  # penalty = "SCAD": sparsity penalty, this can be NULL, SCAD, L1 or Hardthreshold. 
+  # phi = 0.02: tuning parameter for penalty
   # rho = 0.95: tuning parameter for selecting number of ranks in each subnetwork's decomposition. 
   # silent: whether to print intermediate results. 
   # preprocess: whether to preprocess the data Y (dont change if you are not sure) 
-  # approximation = T: whether to use approximated algorithm based on SVD (don't change if you are not sure).
+  # approximation = T: whether to use approximated algorithm based on SVD (dont change if you are not sure).
+
 {
-  # demean the data
-  Y = sweep(Y,2,apply(Y,2,mean),"-") 
-  # preprocess the data if True
+  if(demean)
+  {
+    Y = sweep(Y,2,apply(Y,2,mean),"-") 
+  }
   if(preprocess)
   { 
     Yraw = Y
@@ -34,6 +36,7 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
   theta_ini = Locus_initial(Y,q,V,rho=rho)
   A = theta_ini$A; S = theta_ini$S
   theta = theta_ini$theta
+  
   
   # Update Parameters
   Iter = 1
@@ -75,9 +78,10 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
       if(preprocess){ 
         A = Yraw %*% t(S) %*% solve(S%*%t(S)) 
       }else{
+        # demeaned Y or unpreprocessed+undemeaned Y
         A = Y %*% t(S) %*% solve(S%*%t(S)) 
       }
-      return(list(Conver = T, A=A,S=S,theta=theta))
+      return(list(Conver = T,A=A,S=S,theta=theta))
     }
     Iter = Iter + 1
   }
@@ -86,6 +90,7 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
   if(preprocess){ 
     A = Yraw %*% t(S) %*% solve(S%*%t(S)) 
   }else{
+    # demeaned Y or unpreprocessed+undemeaned Y
     A = Y %*% t(S) %*% solve(S%*%t(S)) 
   }
   return(list(Conver=F, A=A, S=S, theta=theta))

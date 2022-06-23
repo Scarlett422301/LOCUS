@@ -4,33 +4,36 @@
 LOCUS: Low-rank decomposition of brain connectivity matrices with universal sparsity
 }
 \description{
-This function is to conduct the LOCUS approach for decomposing brain connectivity data into subnetworks. 
+This is the main function in the package. It conducts the LOCUS approach for decomposing brain connectivity data into subnetworks. 
 }
 \usage{
 LOCUS(Y, q, V, MaxIteration=100, penalty="SCAD", phi=0.9, approximation=T, preprocess=T, 
-espli1=0.001, espli2=0.001, rho=0.95, silent=F, demean=T)
+espli1=0.001, espli2=0.001, rho=0.95, silent=F)
 }
 
 \arguments{
-  \item{Y}{Group-level connectivity data from N subjects, which is of dimension N x p, where p is number of edges. Each row of Y represents a subject's vectorized connectivity matrix by \code{Ltrans} function. }
+  \item{Y}{Group-level connectivity data from N subjects, which is of dimension N x p, where p is number of edges. Each row of Y represents a subject's vectorized connectivity matrix by \code{Ltrans} function.}
   \item{q}{Number of ICs/subnetworks to extract.}
   \item{V}{Number of nodes in the network. Note: p should be equal to V(V-1)/2. }
   \item{MaxIteration}{Maximum number of iteractions.}
-  \item{penalty}{The penalization approach for universal sparsity, which can be \code{NULL}, \code{SCAD}, \code{L1}, \code{Hardthreshold}. }
-  \item{phi}{Tuning parameter for uniform sparse penalty.}
+  \item{penalty}{The penalization approach for universal sparsity, which can be \code{NULL}, \code{SCAD}, and \code{L1}.}
+  \item{phi}{\eqn{\phi}: tuning parameter for uniform sparse penalty.}
   \item{approximation}{Whether to use an approximated algorithm to speed up the algorithm.}
   \item{preprocess}{Whether to preprocess the data, which reduces the data dimension to \code{q} and whiten the data.}
   \item{espli1}{Toleration for convergence on mixing coefficient matrix, i.e. A.}
   \item{espli2}{Toleration for convergence on latent sources, i.e. S.}
-  \item{rho}{Tuning parameter for selecting number of ranks in each subnetwork's decomposition. }
+  \item{rho}{\eqn{\rho}: tuning parameter for selecting number of ranks in each subnetwork's decomposition.}
   \item{silent}{Whether to print intermediate steps.}
-  \item{demean}{Whether to demean Y.}
 }
 
 \details{
   This is the main function for LOCUS decomposition of brain connectivity matrices, which is to minimize the following objective function:
     \deqn{\sum_{i=1}^N\|y_i - \sum_{l=1}^q a_{il} s_l\|_2^2 + \phi \sum_{l=1}^q\|s_l\|_*,}
-  where \eqn{y_i} is the transpose of \eqn{i}th row in \eqn{Y}, \eqn{s_l = L(X_l D_l X_l')} represents the \eqn{l}th vectorized latent source/subnetwork with low-rank decomposition, \eqn{L} is \code{Ltrans} function, \eqn{\|\cdot\|_*} represents the penalty which can either be L1, SCAD or hard-thresholded. Further details can be found in the LOCUS paper.  
+  where \eqn{y_i} is the transpose of \eqn{i}th row in \eqn{Y}, \eqn{s_l = L(X_l D_l X_l')} represents the \eqn{l}th vectorized latent source/subnetwork with low-rank decomposition, \eqn{L} is \code{Ltrans} function, \eqn{\|\cdot\|_*} represents the penalty which can either be NULL, L1, or SCAD. The SCAD(smoothly clipped absolute deviation) penalty is proposed in Fan & Li (2001), which minimizes the following objective function: 
+  \deqn{min_{\beta} \frac{1}{2}||y-X\beta||_2^2 + p(\beta)}
+  where \eqn{p} is a quadratic spline function. 
+  
+  If user want to do BIC parameter selection of \eqn{\phi, \rho} before calling LOCUS main function, one can use \code{LOCUS_BIC_selection} to find the best parameter set. Further details can be found in the LOCUS paper.  
 }
 \value{
   An R list from Locus containing the following terms:
@@ -41,6 +44,8 @@ espli1=0.001, espli2=0.001, rho=0.95, silent=F, demean=T)
    }
 \references{
 Wang, Y. and Guo, Y. (2022+).   \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with universal sparsity. } In preparation. 
+
+Fan, J., & Li, R. (2001).  \emph{Variable selection via nonconcave penalized likelihood and its oracle properties.} Journal of the American statistical Association, 96(456), 1348-1360.
 }
 \examples{
 ## Simulated the data to use. 

@@ -9,7 +9,7 @@ This function is to conduct the BIC-based hyper-parameters selection for LOCUS.
 LOCUS_BIC_selection(Y, q, V, MaxIteration=50, penalty="SCAD", 
 phi_grid_search=seq(0.2, 1, 0.2), rho_grid_search=c(0.95), 
 espli1=0.001, espli2=0.001, save_LOCUS_output=T,
-preprocess = T, demean = T)
+preprocess = T)
 }
 
 \arguments{
@@ -24,7 +24,6 @@ preprocess = T, demean = T)
   \item{rho_grid_search}{Grid search candidates for tuning parameter for selecting number of ranks in each subnetwork's decomposition. }
   \item{save_LOCUS_output}{Whether to save LOCUS output from each grid search.}
   \item{preprocess}{Whether to preprocess the data, which reduces the data dimension to \code{q} and whiten the data.}
-  \item{demean}{Whether to demean Y.}
 }
 
 \details{
@@ -37,8 +36,7 @@ where \eqn{g} denotes the pdf of a multivariate Gaussian distribution, \eqn{\hat
 \value{
    \item{bic_tab}{BIC values per phi and rho.}
    \item{LOCUS_results}{LOCUS output, if save_LOCUS_output is TRUE. }
-   }
-
+}
 \examples{
 ## Simulated the data to use. 
 V = 50
@@ -54,13 +52,15 @@ Yraw = Atruth\%*\%Struth + Residual
 
 ##### Run Locus on the data ##### 
 Locus_bic_result = LOCUS_BIC_selection(Yraw,3,V)
-
 print(Locus_bic_result$bic_tab)
+# line plot
+plot(Locus_bic_result$bic_tab[,2], Locus_bic_result$bic_tab[,3], type = "l", 
+     xlab = "phi", ylab = "BIC")
+     
+# visualize the best result based on BIC
 idx = which.min(Locus_bic_result$bic_tab[,3])
-
 par(mfrow=c(2,3))
 for(i in 1:3){image(Ltrinv(Struth[i,], V, FALSE))}
 for(i in 1:3){image(Ltrinv(Locus_bic_result$LOCUS_results[[idx]]$LOCUS$S[i,], 
 V, FALSE))}
-
 }
