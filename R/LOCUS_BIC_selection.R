@@ -27,7 +27,7 @@ LOCUS_BIC_selection <- function(Y, q, V, MaxIteration=50, penalty="SCAD", phi_gr
     for(phi in phi_grid_search)
     {
       print(paste0('Running LOCUS for rho=', rho, ', phi=', phi, '...'))
-      LOCUS_output = LOCUS_temp(Y, q=q, V=V, MaxIteration=MaxIteration, penalty=penalty, phi=phi, approximation=T, 
+      LOCUS_output = LOCUS_internal_in_bic(Y, q=q, V=V, MaxIteration=MaxIteration, penalty=penalty, phi=phi, approximation=T,
                            preprocess=F, espli1=espli1, espli2=espli1, rho=rho, silent=T, demean=F)
       bic_value = calculate_bic(Y, LOCUS_output$A, LOCUS_output$S)
       bic_tab[k,] = c(rho, phi, bic_value)
