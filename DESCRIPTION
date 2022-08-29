@@ -4,7 +4,7 @@ Title: Low-Rank Decomposition of Brain Connectivity Matrices with
         Universal Sparsity
 Version: 1.0
 Date: 2022-08-28
-Author: Jialu Ran, Yikai Wang, Ying Guo
+Author: Yikai Wang, Jialu Ran, Ying Guo
 Maintainer: Jialu Ran <jialu.ran@emory.edu>
 Depends: R (>= 3.1.0), ica, MASS, far
 Description: Provide a BSS method for decomposing subjects' brain connectivity matrices into underlying subnetworks and subject level loadings. 
