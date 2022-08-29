@@ -3,11 +3,10 @@ Type: Package
 Title: Low-rank decomposition of brain connectivity matrices with
         universal sparsity
 Version: 1.0
-Date: 2022-05-22
+Date: 2022-08-23
 Author: Yikai Wang, Jialu Ran, Ying Guo
 Maintainer: Yikai Wang <johnzon.wyk@gmail.com>, Jialu Ran <jialu.ran@emory.edu>
 Depends: R (>= 3.1.0), ica, MASS, far
 Description: Provide a BSS method for decomposing subjects' brain connectivity matrices into underlying subnetworks and subject level loadings. 
 License: GPL-2
 NeedsCompilation: no
-Packaged: 2022-05-23 02:11:58 UTC; johnz
