@@ -43,7 +43,7 @@ espli1=0.001, espli2=0.001, rho=0.95, silent=F)
    \item{theta}{A list of length q, where \code{theta[[i]]} contains the symmetric low-rank decomposition of \code{i}th subnetwork. }
    }
 \references{
-Wang, Y. and Guo, Y. (2022+).   \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with universal sparsity. } In preparation. 
+Wang, Y. and Guo, Y. (2022+).   \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with universal sparsity. } Annals of Applied Statistics (accepted), 2022+.
 
 Fan, J., & Li, R. (2001).  \emph{Variable selection via nonconcave penalized likelihood and its oracle properties.} Journal of the American statistical Association, 96(456), 1348-1360.
 }
