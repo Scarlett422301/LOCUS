@@ -1,6 +1,7 @@
-LOCUS_temp <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
-                  approximation=T, preprocess=T, 
-                  espli1=0.001, espli2=0.001, rho=0.95, silent=F, demean=T)
+# This is the internal version of LOCUS function used in BIC selection function.
+# The only difference from primary LOCUS function is this function has a control of demean method.
+LOCUS_internal_in_bic <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
+                  approximation=T, preprocess=T, espli1=0.001, espli2=0.001, rho=0.95, silent=F, demean=T)
   # Y: connectivity data of dimension N x K, N is number of subjects, K is number of edges. 
   # q: Number of subnetworks to extract.
   # V: Number of nodes in network.

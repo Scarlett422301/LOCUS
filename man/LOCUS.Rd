@@ -29,9 +29,7 @@ espli1=0.001, espli2=0.001, rho=0.95, silent=F)
 \details{
   This is the main function for LOCUS decomposition of brain connectivity matrices, which is to minimize the following objective function:
     \deqn{\sum_{i=1}^N\|y_i - \sum_{l=1}^q a_{il} s_l\|_2^2 + \phi \sum_{l=1}^q\|s_l\|_*,}
-  where \eqn{y_i} is the transpose of \eqn{i}th row in \eqn{Y}, \eqn{s_l = L(X_l D_l X_l')} represents the \eqn{l}th vectorized latent source/subnetwork with low-rank decomposition, \eqn{L} is \code{Ltrans} function, \eqn{\|\cdot\|_*} represents the penalty which can either be NULL, L1, or SCAD. The SCAD(smoothly clipped absolute deviation) penalty is proposed in Fan & Li (2001), which minimizes the following objective function: 
-  \deqn{min_{\beta} \frac{1}{2}||y-X\beta||_2^2 + p(\beta)}
-  where \eqn{p} is a quadratic spline function. 
+  where \eqn{y_i} is the transpose of \eqn{i}th row in \eqn{Y}, \eqn{s_l = L(X_l D_l X_l')} represents the \eqn{l}th vectorized latent source/subnetwork with low-rank decomposition, \eqn{L} is \code{Ltrans} function, \eqn{\|\cdot\|_*} represents the penalty which can either be NULL, L1, or SCAD (Fan & Li, 2001).
   
   If user want to do BIC parameter selection of \eqn{\phi, \rho} before calling LOCUS main function, one can use \code{LOCUS_BIC_selection} to find the best parameter set. Further details can be found in the LOCUS paper.  
 }
@@ -43,7 +41,7 @@ espli1=0.001, espli2=0.001, rho=0.95, silent=F)
    \item{theta}{A list of length q, where \code{theta[[i]]} contains the symmetric low-rank decomposition of \code{i}th subnetwork. }
    }
 \references{
-Wang, Y. and Guo, Y. (2022+).   \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with universal sparsity. } In preparation. 
+Wang, Y. and Guo, Y. (2022+).   \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with universal sparsity. } Annals of Applied Statistics (accepted), 2022+.
 
 Fan, J., & Li, R. (2001).  \emph{Variable selection via nonconcave penalized likelihood and its oracle properties.} Journal of the American statistical Association, 96(456), 1348-1360.
 }
