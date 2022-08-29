@@ -54,7 +54,7 @@ Yraw = Atruth\%*\%Struth + Residual
 Locus_bic_result = LOCUS_BIC_selection(Yraw,3,V)
 print(Locus_bic_result$bic_tab)
 # line plot
-plot(Locus_bic_result$bic_tab[,2], Locus_bic_result$bic_tab[,3], type = "l", 
+plot(Locus_bic_result$bic_tab[,2], Locus_bic_result$bic_tab[,3], type = "b",
      xlab = "phi", ylab = "BIC")
      
 # visualize the best result based on BIC
