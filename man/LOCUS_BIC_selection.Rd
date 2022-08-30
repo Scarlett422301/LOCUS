@@ -17,7 +17,7 @@ preprocess = T)
   \item{q}{Number of ICs/subnetworks to extract.}
   \item{V}{Number of nodes in the network. Note: p should be equal to V(V-1)/2. }
   \item{MaxIteration}{Maximum number of iteractions.}
-  \item{penalty}{The penalization approach for universal sparsity, which can be \code{NULL}, \code{SCAD}, \code{L1}, \code{Hardthreshold}. }
+  \item{penalty}{The penalization approach for uniform sparsity, which can be \code{NULL}, \code{SCAD}, \code{L1}, \code{Hardthreshold}. }
   \item{phi_grid_search}{Grid search candidates for tuning parameter of uniform sparse penalty.}
   \item{espli1}{Toleration for convergence on mixing coefficient matrix, i.e. A.}
   \item{espli2}{Toleration for convergence on latent sources, i.e. S.}
@@ -27,7 +27,7 @@ preprocess = T)
 }
 
 \details{
-  In Wang, Y. and Guo, Y. (2022+), the tuning parameters for learning the LOCUS model include \eqn{\phi, \rho}. The BIC-type criterion is proposed to select those parameters. 
+  In Wang, Y. and Guo, Y. (2023), the tuning parameters for learning the LOCUS model include \eqn{\phi, \rho}. The BIC-type criterion is proposed to select those parameters. 
   
 \deqn{BIC =  -2 \sum_{i=1}^N log \{g(y_i; \sum_{l=1}^{q} \hat{a}_{il} \hat{s}_l, \hat{\sigma}^2 I_p)\} + log(N) \sum_{l=1}^{q}\|\hat{s}_l\|_0}
 

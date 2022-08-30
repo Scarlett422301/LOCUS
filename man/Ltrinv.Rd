@@ -17,5 +17,5 @@ Ltrinv(x, V, d = T)
 
 \value{
   A symmetric matrix whose upper triangle part is \code{x}. 
-   }
+}
 

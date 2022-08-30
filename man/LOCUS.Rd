@@ -1,7 +1,7 @@
 \name{LOCUS}
 \alias{LOCUS}
 \title{
-LOCUS: Low-rank decomposition of brain connectivity matrices with universal sparsity
+LOCUS: Low-rank decomposition of brain connectivity matrices with uniform sparsity
 }
 \description{
 This is the main function in the package. It conducts the LOCUS approach for decomposing brain connectivity data into subnetworks. 
@@ -16,7 +16,7 @@ espli1=0.001, espli2=0.001, rho=0.95, silent=F)
   \item{q}{Number of ICs/subnetworks to extract.}
   \item{V}{Number of nodes in the network. Note: p should be equal to V(V-1)/2. }
   \item{MaxIteration}{Maximum number of iteractions.}
-  \item{penalty}{The penalization approach for universal sparsity, which can be \code{NULL}, \code{SCAD}, and \code{L1}.}
+  \item{penalty}{The penalization approach for uniform sparsity, which can be \code{NULL}, \code{SCAD}, and \code{L1}.}
   \item{phi}{\eqn{\phi}: tuning parameter for uniform sparse penalty.}
   \item{approximation}{Whether to use an approximated algorithm to speed up the algorithm.}
   \item{preprocess}{Whether to preprocess the data, which reduces the data dimension to \code{q} and whiten the data.}
@@ -41,7 +41,7 @@ espli1=0.001, espli2=0.001, rho=0.95, silent=F)
    \item{theta}{A list of length q, where \code{theta[[i]]} contains the symmetric low-rank decomposition of \code{i}th subnetwork. }
    }
 \references{
-Wang, Y. and Guo, Y. (2022+).   \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with universal sparsity. } Annals of Applied Statistics (accepted), 2022+.
+Wang, Y. and Guo, Y. (2023). \emph{LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with uniform sparsity.} Annals of Applied Statistics.
 
 Fan, J., & Li, R. (2001).  \emph{Variable selection via nonconcave penalized likelihood and its oracle properties.} Journal of the American statistical Association, 96(456), 1348-1360.
 }

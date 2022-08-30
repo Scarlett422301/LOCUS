@@ -16,5 +16,5 @@ Ltrans(X, d = T)
 
 \value{
   A vector containing the upper triganle part of \code{X}. 
-   }
+}
 

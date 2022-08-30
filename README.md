@@ -8,12 +8,7 @@
 
 ## Description
 
-`LOCUS` is an R package that conducts the low-rank decomposition of brain connectivity matrices 
-with universal sparsity to reveal sub brain networks.
-
------
-
-## Installation
+`LOCUS` is a blind source separation (BSS) method for decomposing symmetric matrices such as brain connectivity matrices to extract sparse latent component matrices and also estimate mixing coefficients. For brain connectivity matrices, the outputs correspond to sparse latent connectivity traits and individual-level trait loadings. The LOCUS method was published in Wang and Guo (2023).
 
 -----
 
@@ -42,3 +37,14 @@ par(mfrow=c(2,3))
 for(i in 1:dim(Struth)[1]){image(Ltrinv(Struth[i,],V,FALSE))}
 for(i in 1:dim(Locus_result$S)[1]){image(Ltrinv(Locus_result$S[i,],V,FALSE))}
 ```
+-----
+
+## References
+
+<div id="refs" class="references">
+
+<div id="ref-wangguo2023">
+
+Wang, Y. and Guo, Y. (2023). LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with uniform sparsity. Annals of Applied Statistics.
+
+</div>
