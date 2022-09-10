@@ -59,8 +59,9 @@ plot(Locus_bic_result$bic_tab[,2], Locus_bic_result$bic_tab[,3], type = "b",
      
 # visualize the best result based on BIC
 idx = which.min(Locus_bic_result$bic_tab[,3])
-par(mfrow=c(2,3))
+oldpar = par(mfrow=c(2,3))
 for(i in 1:3){image(Ltrinv(Struth[i,], V, FALSE))}
 for(i in 1:3){image(Ltrinv(Locus_bic_result$LOCUS_results[[idx]]$LOCUS$S[i,], 
 V, FALSE))}
+par(oldpar)
 }

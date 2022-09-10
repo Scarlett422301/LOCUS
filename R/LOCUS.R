@@ -1,6 +1,6 @@
 LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
-                  approximation=T, preprocess=T, 
-                  espli1=0.001, espli2=0.001, rho=0.95, silent=F)
+                  approximation=TRUE, preprocess=TRUE, 
+                  espli1=0.001, espli2=0.001, rho=0.95, silent=FALSE)
   # Y: connectivity data of dimension N x K, N is number of subjects, K is number of edges. 
   # q: Number of subnetworks to extract.
   # V: Number of nodes in network.
@@ -11,7 +11,7 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
   # rho = 0.95: tuning parameter for selecting number of ranks in each subnetwork's decomposition. 
   # silent: whether to print intermediate results. 
   # preprocess: whether to preprocess the data Y (dont change if you are not sure) 
-  # approximation = T: whether to use approximated algorithm based on SVD (don't change if you are not sure).
+  # approximation = TRUE: whether to use approximated algorithm based on SVD (don't change if you are not sure).
 {
   # demean the data
   Y = sweep(Y,2,apply(Y,2,mean),"-") 
@@ -25,8 +25,7 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
   K = dim(Y)[2]          # Number of edges
   if(V != (sqrt(1+8*K)+1)/2)
   {
-    print("V is not correctly specified! Please double check the dimension of your input data.")
-    stop()
+    stop("V is not correctly specified! Please double check the dimension of your input data.")
   }
   N = dim(Y)[1]          # Number of subjects (ICs)
   
@@ -59,34 +58,32 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
     errS = norm(as.matrix(S_new-S))/norm(as.matrix(S))
     errA = norm(as.matrix(A_new-A))/norm(as.matrix(A))
     
-    if(sum(is.na(c(errS,errA)))>0){return(list(Conver=F,A=A,S=S,theta=theta))}
+    if(sum(is.na(c(errS,errA)))>0){return(list(Conver=FALSE,A=A,S=S,theta=theta))}
     
     if(!silent)
     {
-      print(paste("Iter ",Iter,"; Percentage change on S: " , round(errS,3),"; Percentage change on A: ",round(errA,3),".",sep=""))
+      message(paste("Iter ",Iter,"; Percentage change on S: " , round(errS,3),"; Percentage change on A: ",round(errA,3),".",sep=""))
     }
     A = A_new; S= S_new; theta = theta_new
     
-    # print(performance_ASq3(S,Struth,Atrue,Atrue)) # this is only for simulation test
-    
     if(errA < espli1 & errS < espli2)
     {
-      if(!silent){print("Converaged!")}
+      if(!silent){cat("Converaged!")}
       if(preprocess){ 
         A = Yraw %*% t(S) %*% solve(S%*%t(S)) 
       }else{
         A = Y %*% t(S) %*% solve(S%*%t(S)) 
       }
-      return(list(Conver = T, A=A,S=S,theta=theta))
+      return(list(Conver = TRUE, A=A,S=S,theta=theta))
     }
     Iter = Iter + 1
   }
   
-  if(!silent){print("Failed to converge!")}
+  if(!silent){cat("Failed to converge!")}
   if(preprocess){ 
     A = Yraw %*% t(S) %*% solve(S%*%t(S)) 
   }else{
     A = Y %*% t(S) %*% solve(S%*%t(S)) 
   }
-  return(list(Conver=F, A=A, S=S, theta=theta))
+  return(list(Conver=FALSE, A=A, S=S, theta=theta))
 }

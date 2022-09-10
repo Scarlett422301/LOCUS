@@ -61,8 +61,8 @@ Yraw = Atruth\%*\%Struth + Residual
 ##### Run Locus on the data ##### 
 Locus_result = LOCUS(Yraw,3,V)
 
-par(mfrow=c(2,3))
+oldpar = par(mfrow=c(2,3))
 for(i in 1:dim(Struth)[1]){image(Ltrinv(Struth[i,],V,FALSE))}
 for(i in 1:dim(Locus_result$S)[1]){image(Ltrinv(Locus_result$S[i,],V,FALSE))}
-
+par(oldpar)
 }

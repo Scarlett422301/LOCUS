@@ -1,13 +1,13 @@
-Locus_update_approx <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,imput_method = "Previous",silent = F)
+Locus_update_approx <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,imput_method = "Previous",silent = FALSE)
 {
   # An extremely efficient approximation method with potentially higher performance. 
   if(is.null(penalt))
   {
     if(!silent)
-      print(paste("Locus without penalty."))
+      cat("Locus without penalty.")
   }else{
     if(!silent)
-      print(paste("Locus with", penalt,"penalty."))
+      cat(paste("Locus with", penalt,"penalty."))
   }
   
   theta_new = list()
@@ -28,7 +28,7 @@ Locus_update_approx <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 
       S_new_0 = S_lold
     }else if(penalt == "SCAD")
     {
-      if(gamma<=2){print("Gamma needs to be > 2!");gamma = 2.01}
+      if(gamma<=2){warning("Gamma needs to be > 2!");gamma = 2.01}
       
       S_new_0= SCAD_func(S_lold,lambda_ch = lambda_ch  ,gamma = gamma)
       S_new_0 = S_new_0 /sd(S_new_0)*sd(S_lold)
@@ -42,17 +42,16 @@ Locus_update_approx <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 
       S_new_0 = S_new_0 /sd(S_new_0)*sd(S_lold)
     }else
     {
-      print("No Penalty available!")
-      stop()
+      stop("No Penalty available!")
     }
     
-    if(imput_method == "Previous")
-    {
+    if(imput_method == "Previous"){
       Sl = Ltrinv(S_new_0,V,F) + diag(diag(t( theta_ic$X_l)%*%diag(theta_ic$lam_l)%*%theta_ic$X_l ))
-    }else if(imput_method == "Average")
-    { Sl = Ltrinv(S_new_0,V,F) + diag( rep(mean(S_new_0),V )) 
-    }else{print("No Imputation available!")
-      stop()}
+    }else if(imput_method == "Average"){ 
+      Sl = Ltrinv(S_new_0,V,F) + diag( rep(mean(S_new_0),V )) 
+    }else{
+      stop("No Imputation available!")
+    }
     eigenSl = eigen(Sl)
     orderEigen = order(abs(eigenSl$values),decreasing = T)
     Rl = R[curr_ic]

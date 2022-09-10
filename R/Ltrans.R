@@ -1,1 +1,1 @@
-Ltrans<-function(X,d=T){ X[upper.tri(X,d)]  } 
+Ltrans<-function(X,d=TRUE){ X[upper.tri(X,d)]  } 

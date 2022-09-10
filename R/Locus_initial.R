@@ -1,14 +1,14 @@
 Locus_initial <- function(Y,q,V,rho=0.95,R = NULL,maxIter = 100)
 { 
-  ICcorr = icaimax(t(Y),nc = q,center=F,maxit=maxIter)
+  ICcorr = icaimax(t(Y),nc = q,center=FALSE,maxit=maxIter)
   S_ini = matrix(0,ncol=dim(ICcorr$S)[1],nrow=q)
   theta_ini = list()
   for(i in 1:q)
   {
-    Sl = Ltrinv( ICcorr$S[,i],V,F)
+    Sl = Ltrinv( ICcorr$S[,i],V,FALSE)
     Sl = Sl + diag( rep(mean(ICcorr$S[,i]),V ))
     eigenSl = eigen(Sl)
-    orderEigen = order(abs(eigenSl$values),decreasing = T)
+    orderEigen = order(abs(eigenSl$values),decreasing = TRUE)
     if(is.null(R))
     {
       Rl = 2
@@ -17,7 +17,7 @@ Locus_initial <- function(Y,q,V,rho=0.95,R = NULL,maxIter = 100)
         eigenset = orderEigen[1:Rl]
         imgeRL = eigenSl$vectors[,eigenset]%*% diag(eigenSl$values[eigenset])%*% t(eigenSl$vectors[,eigenset])
         # image( imgeRL ) 
-        if(cor(Ltrans(imgeRL,F),ICcorr$S[,i]) > rho) break
+        if(cor(Ltrans(imgeRL,FALSE),ICcorr$S[,i]) > rho) break
         Rl = Rl + 1
       }
     }else
@@ -33,7 +33,7 @@ Locus_initial <- function(Y,q,V,rho=0.95,R = NULL,maxIter = 100)
     {
       theta_ini[[i]]$X_l[j,] = eigenSl$vectors[,eigenset[j]]
     }
-    S_ini[i,] = Ltrans( t(theta_ini[[i]]$X_l)%*%diag(theta_ini[[i]]$lam_l)%*%theta_ini[[i]]$X_l,F)
+    S_ini[i,] = Ltrans( t(theta_ini[[i]]$X_l)%*%diag(theta_ini[[i]]$lam_l)%*%theta_ini[[i]]$X_l,FALSE)
   }
   
   # compute initial value of A

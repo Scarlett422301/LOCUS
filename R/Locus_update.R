@@ -1,4 +1,4 @@
-Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silent = F)
+Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silent = FALSE)
 {
   # Update latent channels X's with flat prior 
   # A denotes mixing matrix
@@ -6,10 +6,10 @@ Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silen
   if(is.null(penalt))
   {
     if(!silent)
-      print(paste("Locus without penalty."))
+      cat("Locus without penalty.")
   }else{
     if(!silent)
-      print(paste("Locus with", penalt,"penalty."))
+      cat(paste("Locus with", penalt,"penalty."))
   }
   
   theta_new = list()
@@ -49,7 +49,7 @@ Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silen
         beta = yvpen
       }else if(penalt == "SCAD")
       {
-        if(gamma<=2){print("Gamma needs to be > 2!");gamma = 2.01}
+        if(gamma<=2){warning("Gamma needs to be > 2!");gamma = 2.01}
         beta= SCAD_func(yvpen,lambda_ch = lambda_ch  ,gamma = gamma)
       }else if(penalt == "L1")
       {
@@ -59,8 +59,7 @@ Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silen
         beta = yvpen*(abs(yvpen)>=lambda_ch)
       }else
       {
-        print("No Penalty available!")
-        stop()
+        stop("No Penalty available!")
       }
       if(sd(beta) == 0)
       {
@@ -72,8 +71,6 @@ Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silen
       v = v+1
     }
     theta_new[[curr_ic]]$X_l = theta[[curr_ic]]$X_l
-    # check the rank
-    #if(theta[[curr_ic]]$X_l){}
     
     # Update D: 
     Xstarstack = t(apply(theta[[curr_ic]]$X_l,1,function(x){ x = matrix(x,ncol=1);return(Ltrans(x%*%t(x),F)) }))
@@ -83,7 +80,7 @@ Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silen
       beta = Yic
     }else if(penalt == "SCAD")
     {
-      if(gamma<=2){print("Gamma needs to be > 2!");gamma = 2.01}
+      if(gamma<=2){warning("Gamma needs to be > 2!");gamma = 2.01}
       beta= SCAD_func(Yic,lambda_ch = lambda_ch  ,gamma = gamma)
     }else if(penalt == "L1")
     {
@@ -102,9 +99,7 @@ Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silen
   
   # Update A
   newA = Y%*%t(newS) %*% solve(newS%*%t(newS)) 
-  # Orthnologize A
-  # newA = newA %*% real( solve( t(newA)%*%newA )^(1/2)); # This could lead to numerical problems. 
-  
+
   for(i in 1:q)
   {
     ai = sd(newA[,i])

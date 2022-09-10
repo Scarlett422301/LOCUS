@@ -8,14 +8,13 @@ psdmat_inverse<-function(mat)
   
   if( min(eigendecomp$values)<=0.0001 )
   {
-    print("Matrix has nearly zero eigenvalue, perturbation is added. ")
-    print(round(eigendecomp$values,3))
+    message("Matrix has nearly zero eigenvalue, perturbation is added. ")
+    # print(round(eigendecomp$values,3))
     perturb <- max(max(eigendecomp$values) - p * min(eigendecomp$values), 0)/(p - 1)
   }else
   {
     perturb = 0
   }
-  # mat = mat + diag(p) * perturb
-  # eigendecomp = eigen(mat)
+
   return( (eigendecomp$vectors)%*%diag(1/(perturb+eigendecomp$values))%*%t(eigendecomp$vectors) )
 }
