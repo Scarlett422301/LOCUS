@@ -7,8 +7,8 @@ LOCUS: Low-rank decomposition of brain connectivity matrices with uniform sparsi
 This is the main function in the package. It conducts the LOCUS approach for decomposing brain connectivity data into subnetworks. 
 }
 \usage{
-LOCUS(Y, q, V, MaxIteration=100, penalty="SCAD", phi=0.9, approximation=T, preprocess=T, 
-espli1=0.001, espli2=0.001, rho=0.95, silent=F)
+LOCUS(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9, approximation=TRUE, preprocess=TRUE, 
+espli1=0.001, espli2=0.001, rho=0.95, silent=FALSE)
 }
 
 \arguments{

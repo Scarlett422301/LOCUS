@@ -6,7 +6,7 @@ Map a symmetric matrix into its upper triangle part. }
 This function is to map the upper triganle part of a symmetric matrix into a vector. 
 }
 \usage{
-Ltrans(X, d = T)
+Ltrans(X, d = TRUE)
 }
 
 \arguments{

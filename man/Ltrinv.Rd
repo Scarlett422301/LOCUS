@@ -6,7 +6,7 @@ Inverse function of \code{Ltrans} to map back a vector into a symmetric matrix. 
 This function is the inverse function of \code{Ltrans}, which is to map a vector back to a symmetric matrix. 
 }
 \usage{
-Ltrinv(x, V, d = T)
+Ltrinv(x, V, d = TRUE)
 }
 
 \arguments{

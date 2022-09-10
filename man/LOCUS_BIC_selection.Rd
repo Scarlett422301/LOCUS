@@ -8,8 +8,8 @@ This function is to conduct the BIC-based hyper-parameters selection for LOCUS.
 \usage{
 LOCUS_BIC_selection(Y, q, V, MaxIteration=50, penalty="SCAD", 
 phi_grid_search=seq(0.2, 1, 0.2), rho_grid_search=c(0.95), 
-espli1=0.001, espli2=0.001, save_LOCUS_output=T,
-preprocess = T)
+espli1=0.001, espli2=0.001, save_LOCUS_output=TRUE, 
+preprocess=TRUE)
 }
 
 \arguments{
