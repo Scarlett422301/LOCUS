@@ -4,8 +4,8 @@ Title: Low-Rank Decomposition of Brain Connectivity Matrices with
         Uniform Sparsity
 Version: 1.0
 Date: 2022-08-28
-Authors@R: c(person("Yikai", "Wang", role = "aut"),
-	    person("Jialu", "Ran", role = c("aut", "cre")),
+Authors@R: c(person("Yikai", "Wang", role = c("aut", "cph"),
+	    person("Jialu", "Ran", role = c("aut", "cre", "cph"), email = "jialuran422@gmail.com"),
              person("Ying", "Guo", role = c("aut", "ths")))
 Maintainer: Jialu Ran <jialuran422@gmail.com>
 Depends: R (>= 3.1.0), ica, MASS, far
