@@ -3,6 +3,7 @@ Type: Package
 Title: Low-Rank Decomposition of Brain Connectivity Matrices with
         Uniform Sparsity
 Version: 1.0
+<<<<<<< Updated upstream
 Date: 2022-08-28
 Authors@R: 
   c(person(given = "Yikai",
@@ -16,6 +17,22 @@ Authors@R:
            family = "Guo",
            role = "aut", "ths"))
 Maintainer: Jialu Ran <jialuran422@gmail.com>
+=======
+Date: 2022-05-22
+Author: Yikai Wang, Jialu Ran, Ying Guo
+Authors@R: 
+  c(person(given = "Yikai",
+           family = "Wang",
+           role = c("aut")),
+    person(given = "Jialu",
+           family = "Ran",
+           role = c("aut, "cre"),
+           email = "jialuran422@gmail.com"),
+    person(given = "Ying",
+           family = "Guo",
+           role = "aut", "ths"))
+Maintainer: Yikai Wang <johnzon.wyk@gmail.com>, Jialu Ran <jialu.ran@emory.edu>
+>>>>>>> Stashed changes
 Depends: R (>= 3.1.0), ica, MASS, far
 Description: LOCUS is a blind source separation (BSS) method for decomposing symmetric matrices such as brain connectivity matrices to extract sparse latent component matrices and also estimate mixing coefficients. For brain connectivity matrices, the outputs correspond to sparse latent connectivity traits and individual-level trait loadings. The LOCUS method was published in Wang and Guo (2023) <https://arxiv.org/pdf/2008.08915.pdf>.
 License: GPL-2
