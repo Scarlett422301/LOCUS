@@ -7,6 +7,6 @@ Date: 2022-08-28
 Authors@R: c(person("Yikai", "Wang", role = c("aut", "cph")), person("Jialu", "Ran", role = c("aut", "cre"), email = "jialuran422@gmail.com"), person("Ying", "Guo", role = c("aut", "ths")))
 Maintainer: Jialu Ran <jialuran422@gmail.com>
 Depends: R (>= 3.1.0), ica, MASS, far
-Description: LOCUS is a blind source separation (BSS) method for decomposing symmetric matrices such as brain connectivity matrices to extract sparse latent component matrices and also estimate mixing coefficients. For brain connectivity matrices, the outputs correspond to sparse latent connectivity traits and individual-level trait loadings. The LOCUS method was published in Wang and Guo (2023) <https://arxiv.org/pdf/2008.08915.pdf>.
+Description: To decompose symmetric matrices such as brain connectivity matrices to extract sparse latent component matrices and also estimate mixing coefficients, a blind source separation (BSS) method named LOCUS was proposed in Wang and Guo (2023) <arXiv:2008.08915>. For brain connectivity matrices, the outputs correspond to sparse latent connectivity traits and individual-level trait loadings. 
 License: GPL-2
 NeedsCompilation: no
