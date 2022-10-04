@@ -76,6 +76,12 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
       }
       return(list(Conver = TRUE, A=A,S=S,theta=theta))
     }
+    
+    # orthogonize A here for the next iteration
+    if(preprocess){
+      A = far::orthonormalization(A)
+    }
+    
     Iter = Iter + 1
   }
   
