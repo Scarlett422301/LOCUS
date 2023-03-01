@@ -92,7 +92,7 @@ Locus_update <- function(Y,A,theta,penalt = NULL,lambda_ch = 0.5,gamma = 3,silen
     
     theta_new[[curr_ic]]$lam_l = as.numeric(solve(Xstarstack%*%t(Xstarstack))%*%Xstarstack%*%beta /sd(beta)*sd(Yic)) # Rx1
     
-    # scale each column of Xl 
+    # scale each column of Xl
     Rl = dim(theta_new[[curr_ic]]$X_l)[1]
     for(r in 1:Rl){
       scale = sqrt(sum(theta_new[[curr_ic]]$X_l[r,]^2))
