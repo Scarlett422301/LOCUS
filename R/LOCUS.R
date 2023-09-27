@@ -1,6 +1,7 @@
 LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
                   approximation=TRUE, preprocess=TRUE, 
-                  espli1=0.001, espli2=0.001, rho=0.95, silent=FALSE)
+                  espli1=0.001, espli2=0.001, rho=0.95, 
+                  demean = TRUE, silent=FALSE)
   # Y: connectivity data of dimension N x K, N is number of subjects, K is number of edges. 
   # q: Number of subnetworks to extract.
   # V: Number of nodes in network.
@@ -14,7 +15,9 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
   # approximation = TRUE: whether to use approximated algorithm based on SVD (don't change if you are not sure).
 {
   # demean the data
-  Y = sweep(Y,2,apply(Y,2,mean),"-") 
+  if(demean){
+    Y = sweep(Y,2,apply(Y,2,mean),"-") 
+  }
   # preprocess the data if True
   if(preprocess)
   { 
@@ -76,7 +79,6 @@ LOCUS <- function(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9,
       }
       return(list(Conver = TRUE, A=A,S=S,theta=theta))
     }
-    
     Iter = Iter + 1
   }
   

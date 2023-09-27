@@ -8,7 +8,7 @@ This is the main function in the package. It conducts the LOCUS approach for dec
 }
 \usage{
 LOCUS(Y, q, V, MaxIteration=100, penalty="SCAD", phi = 0.9, approximation=TRUE, 
-preprocess=TRUE, espli1=0.001, espli2=0.001, rho=0.95, silent=FALSE)
+preprocess=TRUE, espli1=0.001, espli2=0.001, rho=0.95, demean = TRUE, silent=FALSE)
 }
 
 \arguments{
@@ -23,6 +23,7 @@ preprocess=TRUE, espli1=0.001, espli2=0.001, rho=0.95, silent=FALSE)
   \item{espli1}{Toleration for convergence on mixing coefficient matrix, i.e. A.}
   \item{espli2}{Toleration for convergence on latent sources, i.e. S.}
   \item{rho}{\eqn{\rho}: tuning parameter for selecting number of ranks in each subnetwork's decomposition.}
+  \item{demean}{Whether to subtract the mean from each column of Y.}
   \item{silent}{Whether to print intermediate steps.}
 }
 
