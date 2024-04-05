@@ -1,18 +1,10 @@
----
-editor_options: 
-  markdown: 
-    wrap: sentence
----
-
 # LOCUS: Low-rank Decomposition of Brain Connectivity Matrices with Universal Sparsity Method
 
 LOCUS (Low-rank Decomposition of Brain Connectivity Matrices with Universal Sparsity Method) is an innovative blind source separation method that incorporates regularization and low-rank structure to investigate brain connectivity.
 
 ## Installation
 
-We assume you are running R 4.1.0 or newer.
-There is no guarantee for backward or forward comparability.
-Please raise the issue on GitHub if something breaks.
+We assume you are running R 4.1.0 or newer. There is no guarantee for backward or forward comparability. Please raise the issue on GitHub if something breaks.
 
 You can install LOCUS from CRAN with:
 
@@ -48,8 +40,7 @@ library(LOCUS)
 
 ## Tutorial
 
-The `LOCUS()` is the main function of our LOCUS algorithm.
-The `LOCUS_BIC_selection()` selects the tuning parameter phi and rho based on our proposed BIC-like criterion.
+The `LOCUS()` is the main function of our LOCUS algorithm. The `LOCUS_BIC_selection()` selects the tuning parameter phi and rho based on our proposed BIC-like criterion.
 
 ### Explanation of Arguments
 
@@ -100,15 +91,11 @@ preprocess=TRUE, demean = TRUE)
 
 #### 1. LOCUS function
 
-The output will be a list with 4 components as such: - `Conver`: Whether the algorithm is converaged.
-- `A`: Mixing matrix ${\{a_{il}\}$ of dimension N x q.
-- `S`: Subnetworks of dimension q x p, where each row represents a vectorized subnetwork based on `Ltrans` function.
-- `theta`: A list of length q, where `theta[[i]]` contains the symmetric low-rank decomposition of \code{i}th subnetwork.
+The output will be a list with 4 components as such: - `Conver`: Whether the algorithm is converaged. - `A`: Mixing matrix ${\{a_{il}\}$ of dimension N x q. - `S`: Subnetworks of dimension q x p, where each row represents a vectorized subnetwork based on `Ltrans` function. - `theta`: A list of length q, where `theta[[i]]` contains the symmetric low-rank decomposition of \code{i}th subnetwork.
 
 #### 2. LOCUS_BIC_selection function
 
-Function outputs a list including the following: - `bic_tab`: BIC values per phi and rho.
-- `LOCUS_results`: LOCUS output, if save_LOCUS_output is TRUE.
+Function outputs a list including the following: - `bic_tab`: BIC values per phi and rho. - `LOCUS_results`: LOCUS output, if save_LOCUS_output is TRUE.
 
 ## Example
 
