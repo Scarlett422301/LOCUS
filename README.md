@@ -1,4 +1,4 @@
-<img src="fig/LOCUS.png" width="800" align="center"/>
+<img src="fig/LOCUS.png" width="900" align="center"/>
 
 # LOCUS: Low-rank Decomposition of Brain Connectivity Matrices with Universal Sparsity Method
 
