@@ -91,7 +91,7 @@ preprocess=TRUE, demean = TRUE)
 
 #### 1. LOCUS function
 
-The output will be a list with 4 components as such: - `Conver`: Whether the algorithm is converaged. - `A`: Mixing matrix ${\{a_{il}\}$ of dimension N x q. - `S`: Subnetworks of dimension q x p, where each row represents a vectorized subnetwork based on `Ltrans` function. - `theta`: A list of length q, where `theta[[i]]` contains the symmetric low-rank decomposition of \code{i}th subnetwork.
+The output will be a list with 4 components as such: - `Conver`: Whether the algorithm is converaged. - `A`: Mixing matrix $\{a_{il}\}$ of dimension N x q. - `S`: Subnetworks of dimension q x p, where each row represents a vectorized subnetwork based on `Ltrans` function. - `theta`: A list of length q, where `theta[[i]]` contains the symmetric low-rank decomposition of ith subnetwork.
 
 #### 2. LOCUS_BIC_selection function
 
