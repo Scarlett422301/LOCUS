@@ -134,3 +134,9 @@ for(i in 1:dim(Locus_result$S)[1]){image(Ltrinv(Locus_result$S[i,],V,FALSE))}
 ## References
 
 <div id="refs" class="references">
+
+<div id="ref-wangguo2023">
+
+Wang, Y. and Guo, Y. (2023). LOCUS: A novel signal decomposition method for brain network connectivity matrices using low-rank structure with uniform sparsity. Annals of Applied Statistics.
+
+</div>
