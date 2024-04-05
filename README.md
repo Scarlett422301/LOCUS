@@ -14,7 +14,7 @@ install.packages("LOCUS")
 
 ## Method
 
-LOCUS is a fully data-driven blind signal separation method for decomposing imaging-based brain connectivity data to reveal underlying neural circuits. Specifically, LOCUS decomposes subjects' connectivity data, $\mathbf{Y}$, into a linear combination of latent connectivity traits or source signals, $\{\mathbf S_\ell\}_{\ell=1}^{q}$, weighted by mixing coefficients $\{\mathbf{a}_\ell\}_{\ell=1}^{q}$, i.e. $$\mathbf Y = \sum_{\ell=1}^{q} {\mathbf{a}_\ell} \mathbf S_\ell + \text{error}.$$
+LOCUS is a fully data-driven blind signal separation method for decomposing imaging-based brain connectivity data to reveal underlying neural circuits. Specifically, LOCUS decomposes subjects' connectivity data, $\mathbf Y$, into a linear combination of latent connectivity traits or source signals, $\{\mathbf{S}_{\ell}\}_{\ell=1}^{q}$, weighted by mixing coefficients $\{\mathbf{a}_{\ell}\}_{\ell=1}^{q}$, i.e. $$\mathbf{Y} = \sum_{\ell=1}^{q} {\mathbf{a}_\ell} \mathbf{S}_{\ell} + \text{error}.$$
 
 Here, each of the connectivity source signals $\mathbf S_\ell$ represents an underlying neural circuit and the mixing coefficients $\{\mathbf{a}_{\ell}\}$ represent subject-specific loadings on the trait. The method has the following highlights:
 
