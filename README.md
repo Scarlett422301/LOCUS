@@ -98,7 +98,10 @@ Function outputs a list including the following:
 ### 1. A simple simulation
 
 ``` r
-## Simulated the data to use
+# library 
+library(LOCUS)
+
+# Simulated the data to use
 V = 50
 S1 = S2 = S3 = matrix(0,ncol = V,nrow = V)
 S1[5:20,5:20] = 4;S1[23:37,23:37] = 3;S1[40:48,40:48] = 3
@@ -110,14 +113,35 @@ Atruth = matrix(rnorm(100*3),nrow=100,ncol=3)
 Residual = matrix(rnorm(100*dim(Struth)[2]),nrow=100)
 Yraw = Atruth%*%Struth + Residual
 
+# visualize source signal
+par(mfrow=c(1,3))
+image(Ltrinv(Struth[1,],V,FALSE))
+image(Ltrinv(Struth[2,],V,FALSE))
+image(Ltrinv(Struth[3,],V,FALSE))
+```
+
+The true source signals
+
+<img src="fig/source_signals.png" width="1200"/>
+
+Conduct LOCUS to decompose FC and unveil underlying source signals.
+
+``` r
 ## Run Locus on the data 
 Locus_result = LOCUS(Yraw,3,V)
 
 ## Visualize the result
-par(mfrow=c(2,3))
-for(i in 1:dim(Struth)[1]){image(Ltrinv(Struth[i,],V,FALSE))}
-for(i in 1:dim(Locus_result$S)[1]){image(Ltrinv(Locus_result$S[i,],V,FALSE))}
+par(mfrow=c(1,3))
+image(Ltrinv(Locus_result$S[3,],V,FALSE))
+image(Ltrinv(-Locus_result$S[1,],V,FALSE))
+image(Ltrinv(-Locus_result$S[2,],V,FALSE))
 ```
+
+Check the estimated source signals.
+
+<img src="fig/decomposition.png" width="1200"/>
+
+### 2. Examples of connectivity traits extracted from Philadelphia Neurodevelopmental Cohort (PNC) study rs-fMRI connectivity data
 
 ## References
 
