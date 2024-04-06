@@ -26,7 +26,9 @@ Here, each of the connectivity source signals $\mathbf S_\ell$ represents an und
 
 -   The learning of LOCUS is formulated as a non-convex optimization problem. The optimization function as below has a block multi-convex structure. LOCUS incorporates an efficient node-rotation algorithm with closed-form solutions at each iteration for the estimation.
 
-<img src="fig/equation.png" width="400" align="center"/>
+::: {style="text-align:center;"}
+<img src="fig/equation.png" width="400"/>
+:::
 
 ## Tutorial
 
