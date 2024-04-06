@@ -26,7 +26,7 @@ Here, each of the connectivity source signals $\mathbf S_\ell$ represents an und
 
 -   The learning of LOCUS is formulated as a non-convex optimization problem. The optimization function as below has a block multi-convex structure. LOCUS incorporates an efficient node-rotation algorithm with closed-form solutions at each iteration for the estimation.
 
-<img src="fig/equation.png" width="800" align="center"/>
+<img src="fig/equation.png" width="700" align="center"/>
 
 The `LOCUS()` is the main function of our LOCUS algorithm. The `LOCUS_BIC_selection()` selects the tuning parameter phi and rho based on our proposed BIC-like criterion.
 
