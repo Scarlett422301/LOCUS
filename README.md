@@ -14,7 +14,7 @@ install.packages("LOCUS")
 
 ## Method
 
-LOCUS is a fully data-driven blind signal separation method for decomposing imaging-based brain connectivity data to reveal underlying neural circuits. Specifically, LOCUS decomposes subjects' connectivity data, $\mathbf Y$, into a linear combination of latent connectivity traits or source signals, $\{\mathbf S_{\ell}\}$, weighted by mixing coefficients $\{\mathbf a_{\ell}\}$, $\ell = 1, \dots, q$, i.e. $$\mathbf Y = \sum_{1}^{\ell} \mathbf a_{\ell} \mathbf S_{\ell} + \text{error}.$$
+LOCUS is a fully data-driven blind signal separation method for decomposing imaging-based brain connectivity data to reveal underlying neural circuits. Specifically, LOCUS decomposes subjects' connectivity data, $\mathbf Y$, into a linear combination of latent connectivity traits or source signals, $\{\mathbf S_{\ell}\}$, weighted by mixing coefficients $\{\mathbf a_{\ell}\}$, $\ell = 1, \dots, q$, i.e. $$\mathbf Y = \sum_{\ell = 1}^q \mathbf a_{\ell} \mathbf S_{\ell} + \text{error}.$$
 
 Here, each of the connectivity source signals $\mathbf S_\ell$ represents an underlying neural circuit and the mixing coefficients $\{\mathbf{a}_{\ell}\}$ represent subject-specific loadings on the trait. The method has the following highlights:
 
@@ -26,7 +26,7 @@ Here, each of the connectivity source signals $\mathbf S_\ell$ represents an und
 
 -   The learning of LOCUS is formulated as a non-convex optimization problem. The optimization function as below has a block multi-convex structure. LOCUS incorporates an efficient node-rotation algorithm with closed-form solutions at each iteration for estimating the parameters.
 
-$$\text{min} \sum_{i=1}^N\| \mathbf{y}_i - \sum_{\ell=1}^q a_{i\ell} \mathcal{L}(\mathbf{X}_\ell\mathbf{D}_\ell\mathbf{X}_{\ell}') \|_2^2 + \phi\sum_{\ell=1}^q \sum_{u<v} |\mathbf{x}_{\ell}(u)'\mathbf{D}_\ell\mathbf{x}_{\ell}(v)|$$
+$$\text{min} \sum_{i=1}^N\| \mathbf y_i - \sum_{\ell=1}^q a_{i\ell} \mathcal L (\mathbf X_{\ell} \mathbf D_{\ell} \mathbf X_{\ell}') \|_2^2 + \phi\sum_{\ell=1}^q \sum_{u<v} |\mathbf x_{\ell}(u)'\mathbf D_{\ell} \mathbf x_{\ell}(v)|$$
 
 ## Tutorial
 
