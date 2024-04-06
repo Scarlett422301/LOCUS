@@ -143,6 +143,10 @@ Check the estimated source signals.
 
 ### 2. Examples of connectivity traits extracted from Philadelphia Neurodevelopmental Cohort (PNC) study rs-fMRI connectivity data
 
+The three most reproducible connectivity traits estimated by LOCUS are depicted along with their top 1% brain connections. Blue denotes negative connections, while red indicates positive connections.
+
+<img src="fig/examples.png" width="1200"/>
+
 ## References
 
 If you find this package useful, please cite:
