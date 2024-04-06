@@ -26,7 +26,7 @@ Here, each of the connectivity source signals $\mathbf S_\ell$ represents an und
 
 -   The learning of LOCUS is formulated as a non-convex optimization problem. The optimization function as below has a block multi-convex structure, where $\phi$ is a tuning parameter for the sparsity term. LOCUS incorporates an efficient node-rotation algorithm with closed-form solutions at each iteration for the estimation.
 
-<img src="fig/equation.png" width="750" align="center"/> 
+<img src="fig/equation.png" width="750" align="center"/>
 
 The `LOCUS()` is the main function of our LOCUS algorithm. The `LOCUS_BIC_selection()` selects the tuning parameter $\phi$ and $\rho$ based on our proposed BIC-like criterion.
 
@@ -43,9 +43,9 @@ preprocess=TRUE, espli1=0.001, espli2=0.001, rho=0.95, demean = TRUE, silent=FAL
 -   `q`: Number of ICs/subnetworks to extract.
 -   `V`: Number of nodes in the network. Note: p should be equal to V(V-1)/2.
 -   `MaxIteration`: Maximum number of iterations. The default number is 100.
--   `penalty`: The penalization approach for uniform sparsity, which can be "NULL"","SCAD", "L1" and "Hardthreshold". Defaults to "SCAD".
+-   `penalty`: The penalization approach for uniform sparsity, which can be "NULL"","SCAD", "L1" or "Hardthreshold". Defaults to "SCAD".
 -   `phi`: The tuning parameter $\phi$ for uniform sparse penalty. The default is 0.9.
--   `approximation`: Whether to use an approximated algorithm to speed up the algorithm. The default is "TRUE". It is suggested to be used.
+-   `approximation`: Whether to use an approximated algorithm to speed up the algorithm. By default, this option is set to "TRUE", which is recommended for faster computation.
 -   `preprocess`: Whether to preprocess the data, which reduces the data dimension to q and whiten the data. The default is "TRUE".
 -   `espli1`: Toleration for convergence on mixing coefficient matrix, i.e. A. The default is 0.001.
 -   `espli2`: Toleration for convergence on latent sources, i.e. S. The default is 0.001.
@@ -66,11 +66,11 @@ preprocess=TRUE, demean = TRUE)
 -   `q`: Number of ICs/subnetworks to extract.
 -   `V`: Number of nodes in the network. Note: p should be equal to V(V-1)/2.
 -   `MaxIteration`: Maximum number of iterations. The default number is 100.
--   `penalty`: The penalization approach for uniform sparsity, which can be "NULL"","SCAD", "L1" and "Hardthreshold". Defaults to "SCAD".
+-   `penalty`: The penalization approach for uniform sparsity, which can be "NULL"","SCAD", "L1" or "Hardthreshold". Defaults to "SCAD".
 -   `phi_grid_search`: Grid search candidates for tuning parameter of uniform sparse penalty.
+-   `rho_grid_search`: Grid search candidates for tuning parameter for selecting number of ranks in each subnetwork's decomposition.
 -   `espli1`: Toleration for convergence on mixing coefficient matrix, i.e. A. The default is 0.001.
 -   `espli2`: Toleration for convergence on latent sources, i.e. S. The default is 0.001.
--   `rho_grid_search`: Grid search candidates for tuning parameter for selecting number of ranks in each subnetwork's decomposition.
 -   `save_LOCUS_output`: Whether to save LOCUS output from each grid search. The default is TRUE.
 -   `preprocess`: Whether to preprocess the data, which reduces the data dimension to q and whiten the data. The default is TRUE.
 -   `demean`: Whether to subtract the mean from each column of Y. The default is TRUE.
@@ -95,7 +95,7 @@ Function outputs a list including the following:
 
 ## Example
 
-Load the example data:
+### 1. A simple simulation
 
 ``` r
 ## Simulated the data to use
